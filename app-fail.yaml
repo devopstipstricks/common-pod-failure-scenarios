@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: app-fail-pod
+spec:
+  containers:
+  - name: bad-app
+    image: busybox
+    command: ["sh", "-c", "echo Starting... && sleep 3600"]

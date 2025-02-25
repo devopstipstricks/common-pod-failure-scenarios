@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: resource-fail-pod
+spec:
+  containers:
+  - name: memory-consumer
+    image: python:3.9
+    command: ["python", "-c", "a = 'x' * 1024 * 1024 * 200; import time; time.sleep(600)"]  # Tries to allocate ~200MB
+    resources:
+      limits:
+        memory: "500Mi" 
+      requests:
+        memory: "80Mi"
